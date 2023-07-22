@@ -361,23 +361,53 @@
             <p class="section-subtitle">How can you communicate?</p>
             <h6 class="section-title mb-5">Contact Me</h6>
             <!-- contact form -->
-            <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
+            <form name="submit-to-google-sheet" class="contact-form col-md-10 col-lg-8 m-auto">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>                 
+                        <input name="name" type="text"  size="50" class="form-control" placeholder="Your Name" required>                 
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Enter Email"requried>                 
+                        <input name="email type="email" class="form-control" placeholder="Enter Email"requried>                 
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input name="message" type="text" size="500" class="form-control" placeholder="Your message" required style="margin-left:50% ;">                 
                     </div>
                  
                     <div class="form-group col-sm-12 mt-3">
                       
-                        <a class="btn btn-outline-primary rounded" href="mailto:solletivivek@gmail.com">CONTACT ME</a>                
+                        <button type="submit" class="btn btn-outline-primary rounded" value="submit"> submit</button>
+                        <span id="msg"></span>              
                     </div>
                 </div>  
             </form><!-- end of contact form -->
         </div><!-- end of container -->
     </section><!-- end of contact section -->
+
+
+
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzafZn90T512NGXsZ9x-37LesAyAAHNRX1rejdVrteP0CogcpyX_dYMe_vvnO3_7hDbDw/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById('msg')
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+               msg.innerHTML = "Thanks for Contacting me"
+               setTimeout(function(){ msg.innerHTML = "" }, 3000);
+            })
+            form.reset()
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+
+
+
+
+
+    
 
     <!-- footer -->
     <div class="container">
