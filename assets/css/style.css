@@ -141,6 +141,13 @@ sup {
   vertical-align: baseline;
 }
 
+/* Add this CSS to your stylesheet */
+.img-responsive {
+  max-width: 80%;
+  height: auto;
+}
+
+
 sub {
   bottom: -.25em;
 }
